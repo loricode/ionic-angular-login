@@ -1,0 +1,16 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle></ion-card-subtitle>
+    <ion-card-title>fasicell</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content [formGroup]="formEmail">
+   
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" name="email" type="email"></ion-input>
+    </ion-item>
+    <ion-button (click)="iniciar()" expand="block" fill="outline">Iniciar</ion-button>
+
+  </ion-card-content>
+</ion-card>
