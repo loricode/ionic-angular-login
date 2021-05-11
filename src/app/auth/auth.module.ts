@@ -10,7 +10,6 @@ import {AuthComponent} from './auth.component';
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    
   ],
   declarations: [AuthComponent]
 })

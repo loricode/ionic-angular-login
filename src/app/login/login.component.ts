@@ -19,19 +19,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public iniciar():void {
-   
+
     this.authService.verificarEmail(this.formEmail.value)
     .subscribe((response) => {
       if((response.data)){
-        console.log(response)
-        this.router.navigate(['auth/', this.formEmail.value])
+        this.router.navigate(['auth'])
       }else{
         console.log(response.data)
       }
     },(error ) => {
      console.log(error)
   });
-  //this.router.navigate(['folder/Inbox'])
+  
    //
   }
 

@@ -6,11 +6,8 @@ interface Email{
 }
 
 interface Login {
-  email:string,
   password:string
 }
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +22,8 @@ export class AuthService {
       return this.http.post<any>(this.url+`auth/`, obj);  
   }
 
+  public iniciarSesion(obj:Login){
+    return this.http.post<any>(this.url+`auth/login.php`, obj);  
+}
 
 }

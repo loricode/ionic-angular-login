@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,22 +11,25 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class AuthComponent implements OnInit {
  
   formAuth = new FormGroup({
-    email: new FormControl(''),
     password: new FormControl('')
   });
 
-  constructor(
-   private route: ActivatedRoute,
-   private router: Router) { }
+  constructor(private router: Router, private authService:AuthService) { }
 
-  ngOnInit() {
-    const email = this.route.snapshot.paramMap.get('email')
-    this.formAuth.setValue({email, password:''})
-  }
+  ngOnInit() { }
 
   public iniciarSesion():void{
    
-    //this.router.navigate(['folder/Inbox'])
+    this.authService.iniciarSesion(this.formAuth.value)
+      .subscribe((response) => {
+        if((response.status == 200  && response.login)){
+          console.log(response)
+          this.router.navigate(['folder/Inbox'])
+        }else{
+          console.log(response.data)
+        }
+      },(error ) => {
+       console.log(error)
+    });
   }
-
 }
